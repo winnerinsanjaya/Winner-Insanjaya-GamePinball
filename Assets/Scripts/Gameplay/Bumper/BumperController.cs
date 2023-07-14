@@ -8,18 +8,30 @@ public class BumperController : MonoBehaviour
 
 	public float multiplier;
 
-	public Color color;
+	public Color color1;
+	public Color color2;
+	public Color color3;
 
     private Renderer renderer;
 
 	private Animator animator;
+
+	private enum BumperState
+	{
+		color1,
+		color2,
+		color3
+	}
+
+	private BumperState state;
 
 	private void Start()
 	{
 		renderer = GetComponent<Renderer>();
 		animator = GetComponent<Animator>();
 
-		renderer.material.color = color;
+		state = BumperState.color1;
+		renderer.material.color = color1;
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
@@ -30,6 +42,30 @@ public class BumperController : MonoBehaviour
 
 			//anim
 			animator.SetTrigger("hit");
+			SetState();
 		}
 	}
+
+	private void SetState()
+    {
+		if(state == BumperState.color1)
+        {
+			state = BumperState.color2;
+			renderer.material.color = color2;
+			return;
+
+		}
+		if(state == BumperState.color2)
+        {
+			state = BumperState.color3;
+			renderer.material.color = color3;
+			return;
+		}
+		if(state == BumperState.color3)
+        {
+			state = BumperState.color1;
+			renderer.material.color = color1;
+			return;
+		}
+    }
 }

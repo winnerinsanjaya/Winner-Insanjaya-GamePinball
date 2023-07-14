@@ -22,6 +22,7 @@ public class LauncherController : MonoBehaviour
     {
         if (collision.collider == bola)
         {
+            GateController.instance.OpenGate();
             ReadInput(bola);
         }
     }
