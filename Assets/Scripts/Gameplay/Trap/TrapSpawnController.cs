@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawnController : MonoBehaviour
+public class TrapSpawnController : MonoBehaviour
 {
-    public static CoinSpawnController instance;
+    public static TrapSpawnController instance;
 
-    public GameObject coinPrefabs;
+    public GameObject trapPrefabs;
 
     public List<spawnPos> spawnPos;
 
@@ -30,24 +30,24 @@ public class CoinSpawnController : MonoBehaviour
 
     private void Update()
     {
-        if(spawnTimer > 0)
+        if (spawnTimer > 0)
         {
             spawnTimer -= Time.deltaTime;
 
-            if(spawnTimer > 0)
+            if (spawnTimer > 0)
             {
                 return;
             }
 
-            if(objectPool.active.Count < 3)
+            if (objectPool.active.Count < 3)
             {
-                SpawnCoin();
+                SpawnTrap();
             }
-            
+
             spawnTimer = orSpawnTimer;
         }
     }
-    private void SpawnCoin()
+    private void SpawnTrap()
     {
         int rand = Random.Range(0, spawnPos.Count);
 
@@ -64,8 +64,8 @@ public class CoinSpawnController : MonoBehaviour
 
                 go.transform.parent = randPos.pos;
 
-                CoinController coinController = go.GetComponent<CoinController>();
-                coinController.SetStart();
+                TrapController trapController = go.GetComponent<TrapController>();
+                trapController.SetStart();
 
                 go.transform.position = randPos.pos.position;
                 go.SetActive(true);
@@ -76,9 +76,9 @@ public class CoinSpawnController : MonoBehaviour
             }
             else
             {
-                GameObject go = Instantiate(coinPrefabs, randPos.pos.position, Quaternion.identity, randPos.pos);
-                CoinController coinController = go.GetComponent<CoinController>();
-                coinController.bola = bola;
+                GameObject go = Instantiate(trapPrefabs, randPos.pos.position, Quaternion.identity, randPos.pos);
+                TrapController trapController = go.GetComponent<TrapController>();
+                trapController.bola = bola;
                 spawnPos[rand].isTaken = true;
                 AddToPoolAct(go);
                 return;
@@ -87,7 +87,7 @@ public class CoinSpawnController : MonoBehaviour
 
         else
         {
-            SpawnCoin();
+            SpawnTrap();
         }
 
     }

@@ -11,6 +11,13 @@ public class BallController : MonoBehaviour
     private Vector3 pos;
 
     public Collider detector;
+
+    public static BallController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -36,9 +43,10 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void backToPos()
+    public void backToPos()
     {
         transform.position = pos;
+        rig.velocity = rig.velocity.normalized * 0;
         GateController.instance.OpenGate();
     }
 }
