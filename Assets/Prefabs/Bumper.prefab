@@ -114,9 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bola: {fileID: 0}
   multiplier: 1.5
-  color1: {r: 0.9622642, g: 0.76708794, b: 0.76708794, a: 0}
-  color2: {r: 0.9091839, g: 1, b: 0.41960788, a: 0}
-  color3: {r: 1, g: 0.35962802, b: 0.2588235, a: 0}
+  color1: {r: 0.3066038, g: 0.61065733, b: 1, a: 0}
+  color2: {r: 1, g: 0.2588235, b: 0.5983422, a: 0}
+  color3: {r: 1, g: 0.86053824, b: 0.2588235, a: 0}
 --- !u!95 &9153185017357510220
 Animator:
   serializedVersion: 5
